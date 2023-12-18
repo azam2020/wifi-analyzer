@@ -15,7 +15,7 @@
 
         table {
             border-collapse: collapse;
-            width: 80%;
+            width: 50%;
             margin: 20px auto;
         }
 
@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-    <h1>More Information About Selected Wi-Fi</h1>
+    <h1>More Information About The Selected Wi-Fi</h1>
 
     <table>
         <thead>
@@ -42,7 +42,7 @@
         <tbody>
             {% for block in details %}
                 <tr>
-                    <td>{{ block }}</td>
+                    <td style="text-align:center">{{ block[0:1000] }}</td>
                 </tr>
             {% endfor %}
         </tbody>

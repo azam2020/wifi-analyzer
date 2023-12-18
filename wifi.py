@@ -18,29 +18,29 @@ def write_file(ssid):
 @app.route('/block_function',methods=['POST'])
 def block_function():
 	grouped_networks = filter_blocked_wifi(scan())
-	ssid_to_block = request.form['ssid_to_block']
-	if ssid_to_block in grouped_networks:
+	input_ssid = request.form['input_ssid']
+	if input_ssid in grouped_networks:
 		total_blocked_ssid = read_file() 
-		total_blocked_ssid.append(ssid_to_block) 
+		total_blocked_ssid.append(input_ssid) 
 		write_file(total_blocked_ssid)
-		del grouped_blocks[ssid_to_block]
-		return render_template('index.html', message=f'Wifi signal {ssid_to_block} blocked.')
+		del grouped_blocks[input_ssid]
+		return render_template('index.html', message=f'Wifi signal {input_ssid} has been blocked successfully.')
 	else:
-		return render_template('index.html',message=f'Wifi signal {ssid_to_block} is not found')
+		return render_template('index.html',message=f'Wifi signal {input_ssid} is not found')
 
 
 
 @app.route('/unblock_function',methods=['POST'])
 def unblock_function():
 	total_blocked_ssid = read_file()
-	ssid_to_unblock = request.form['ssid_to_unblock']
-	if ssid_to_unblock in total_blocked_ssid:
-		total_blocked_ssid.remove(ssid_to_unblock)
+	input_ssid = request.form['input_ssid']
+	if input_ssid in total_blocked_ssid:
+		total_blocked_ssid.remove(input_ssid)
 		write_file(total_blocked_ssid) 
 		filter_blocked_wifi(scan())
-		return render_template('index.html',message = f'Wifi signal {ssid_to_unblock} unblocked')
+		return render_template('index.html',message = f'Wifi signal {input_ssid} has been unblocked successfully')
 	else:
-		return render_template('index.html',message = f'Wifi signal {ssid_to_unblock} is not found in the blocked wifi list')
+		return render_template('index.html',message = f'Wifi signal {input_ssid} is not found in the blocked wifi list')
 
 @app.route('/blocked_wifi')
 def display_blocked_wifi():
@@ -54,7 +54,7 @@ def display_blocked_wifi():
 def reset():
 	subprocess.check_output(['rm', 'blocked_signal.txt'])
 	subprocess.check_output(['touch','blocked_signal.txt'])
-	return render_template('index.html',message = "All blocked wifi signlas are unblocked now!")
+	return render_template('index.html',message = "All blocked wifi signlas have been successfully unblocked.")
 
 def scan():
 	scan_result = subprocess.check_output(['sudo','iwlist','wlo1','scan'])
@@ -63,11 +63,11 @@ def scan():
 
 @app.route('/more',methods=['POST'])
 def more():
-	ssid = request.form['ssid_for_more_info']
-	if ssid in grouped_blocks:
-		return render_template('more_info.html',details = grouped_blocks[ssid]['blocks'])
+	input_ssid = request.form['input_ssid']
+	if input_ssid in grouped_blocks:
+		return render_template('more_info.html',details = grouped_blocks[input_ssid]['blocks'])
 	else:
-		return render_template('index.html',message = "SSID not found, please check if it is present in the available wifi list or not")
+		return render_template('index.html',message = f"Wifi signal {input_ssid} not found, please check if it is present in the available wifi list or not")
  
 
 @app.route('/scan_wifi')
