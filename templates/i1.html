@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Scanner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Wi-Fi Scanner</h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <form action="/block_function" method="post">
+        <label for="ssid_to_block">SSID to block:</label>
+        <input type="text" name="ssid_to_block" required>
+        <button type="submit">Block</button>
+    </form>
+    <form action="/unblock_function" method="post">
+        <label for="ssid_to_unblock">SSID to unblock:</label>
+        <input type="text" name="ssid_to_unblock" required>
+        <button type="submit">Unblock</button>
+    </form>
+   <form action="/more" method="post">
+	<label for "ssid_for_more_info">SSID for more info:</label>
+	<input type="text" name="ssid_for_more_info" required>
+	<button type="submit">More Info</button>
+   </form>
+    <form action="/reset">
+	<button type="submit">Reset</button>
+   </form>
+   <a href="/scan_wifi">Scan Wi-Fi</a>
+  <br>
+    <a href="/blocked_wifi">Blocked Wifi List</a>
+</body>
+</html>

@@ -57,7 +57,7 @@ def reset():
 	return render_template('index.html',message = "All blocked wifi signals are deleted")
 
 def scan():
-	scan_result = subprocess.check_output(['sudo','iwlist','wlo1','scan'])
+	scan_result = subprocess.check_output(['sudo','iwlist','wlan0','scan'])
 	scan_result = scan_result.decode('utf-8')
 	return scan_result
 
@@ -116,7 +116,7 @@ def extract_data(block, var):
 
 
 if __name__=='__main__':
-	app.run(debug=True,port=5001)
+	app.run(host='0.0.0.0',port=5000,debug=True)
 
 """
 while (True):
