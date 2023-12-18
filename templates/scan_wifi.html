@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Scan Results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wi-Fi Scan Results</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>SSID</th>
+                <th>Signal Strength</th>
+                <th>Frequency</th>
+		<th>Encryption key</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ssid, details in wifi_info.items() %}
+                <tr>
+                    <td>{{ ssid }}</td>
+                    <td>{{ details['Signal Strength'] }}</td>
+                    <td>{{ details['Frequency'] }}</td>
+                    <td>{{ details['Encryption key'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
