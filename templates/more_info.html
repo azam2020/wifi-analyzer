@@ -5,40 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wi-Fi Detailed Information</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: 20px auto;
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
+     body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <h1>Wi-Fi Scan Results</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Block</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for block in details %}
-                <tr>
-                    <td>{{ block }}</td>
-                </tr>
+    <h1>More Information About Selected Wi-Fi</h1>
+	  {% for block in details %}
+              <pre>  {{ block }}</pre>
             {% endfor %}
-        </tbody>
-    </table>
+    
 </body>
 </html>
 

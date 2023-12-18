@@ -25,38 +25,45 @@
 
         .btn-group {
             display: flex;
-            gap: 10px;
+            gap: 20px;
+	    margin: 20px auto 40px;
         }
+	h1 {
+           margin: 10px 20px 50px;
+       }
+	h3 {
+	color: green;
+	margin-bottom: 40px;
+	}
     </style>
 </head>
 <body>
-    <h1>Wi-Fi Scanner</h1>
+    <h1>Wi-Fi Analyzer</h1>
     {% if message %}
-        <p>{{ message }}</p>
+        <h3>{{ message }}</h3>
     {% endif %}
+     <div class="btn-group">
+	<a href="/scan_wifi" class="btn btn-primary btn-lg btn-block">Scan All Available Wi-Fi Signals</a>
+     </div>
     <form action="/block_function" method="post">
-        <label for="ssid_to_block">SSID to block:</label>
-        <input type="text" name="ssid_to_block" required>
-        <button type="submit">Block</button>
+        <label for="ssid_to_block">Enter SSID to block:</label>
+        <input type="text" placeholder="LTTS-Guest" name="ssid_to_block" required>
+        <button type="submit" class="btn btn-danger">Block</button>
     </form>
     <form action="/unblock_function" method="post">
-        <label for="ssid_to_unblock">SSID to unblock:</label>
-        <input type="text" name="ssid_to_unblock" required>
-        <button type="submit">Unblock</button>
+        <label for="ssid_to_unblock">Enter SSID to unblock:</label>
+        <input type="text" placeholder="LTTS-Guest" name="ssid_to_unblock" required>
+        <button type="submit" class="btn btn-secondary">Unblock</button>
     </form>
     <form action="/more" method="post">
-        <label for="ssid_for_more_info">SSID for more info:</label>
-        <input type="text" name="ssid_for_more_info" required>
-        <button type="submit">More Info</button>
-    </form>
-    <form action="/reset">
-        <button type="submit">Reset</button>
+        <label for="ssid_for_more_info">Enter SSID for more info:</label>
+        <input type="text" placeholder="LTTS-Guest" name="ssid_for_more_info" required>
+        <button type="submit" class="btn btn-info">More Info</button>
     </form>
     <div class="btn-group">
-        <a href="/scan_wifi" class="btn btn-primary">Scan Wi-Fi</a>
-        <a href="/blocked_wifi" class="btn btn-primary">Blocked Wifi List</a>
+        <a href="/blocked_wifi" class="btn btn-primary">All Blocked Wi-Fi Signals</a>
+	<a href="/reset" class="btn btn-primary">Delete All Blocked Wi-Fi Signals</a>
     </div>
-    <!-- Add Bootstrap JS and Popper.js scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
       </html>

@@ -24,9 +24,9 @@ def block_function():
 		total_blocked_ssid.append(ssid_to_block) 
 		write_file(total_blocked_ssid)
 		del grouped_blocks[ssid_to_block]
-		return render_template('index.html', message=f'wifi signal {ssid_to_block} has been successfully blocked')
+		return render_template('index.html', message=f'Wifi signal {ssid_to_block} blocked.')
 	else:
-		return render_template('index.html',f'wifi signal {ssid_to_block} is not found')
+		return render_template('index.html',f'Wifi signal {ssid_to_block} is not found')
 
 
 
@@ -38,7 +38,7 @@ def unblock_function():
 		total_blocked_ssid.remove(ssid_to_unblock)
 		write_file(total_blocked_ssid) 
 		filter_blocked_wifi(scan())
-		return render_template('index.html',message = f'wifi signal {ssid_to_unblock} is unblocked')
+		return render_template('index.html',message = f'Wifi signal {ssid_to_unblock} unblocked')
 	else:
 		return render_template('index.html',message = f'wifi signal {ssid_to_unblock} is not found in the blocked wifi list')
 
@@ -48,13 +48,13 @@ def display_blocked_wifi():
 	if len(total_blocked_wifi)!=0:
 		return render_template('blocked_wifi.html',blocked_list = total_blocked_wifi)
 	else:
-		return render_template('index.html',message = "Nothing to display -> blocked list is empty")
+		return render_template('index.html',message = "Nothing to display -> blocked wifi list is empty")
 
 @app.route('/reset')
 def reset():
 	subprocess.check_output(['rm', 'blocked_signal.txt'])
 	subprocess.check_output(['touch','blocked_signal.txt'])
-	return render_template('index.html',message = "All blocked wifi signals are deleted")
+	return render_template('index.html',message = "All blocked wifi signlas are unblocked now!")
 
 def scan():
 	scan_result = subprocess.check_output(['sudo','iwlist','wlan0','scan'])
@@ -67,7 +67,7 @@ def more():
 	if ssid in grouped_blocks:
 		return render_template('more_info.html',details = grouped_blocks[ssid]['blocks'])
 	else:
-		return render_template('index.html',message = "SSID not found, please check if it is present in the available wifi or not")
+		return render_template('index.html',message = "SSID not found, please check if it is present in the available wifi list or not")
  
 
 @app.route('/scan_wifi')
