@@ -57,7 +57,7 @@ def reset():
 	return render_template('index.html',message = "All blocked wifi signlas have been successfully unblocked.")
 
 def scan():
-	scan_result = subprocess.check_output(['sudo','iwlist','wlo1','scan'])
+	scan_result = subprocess.check_output(['sudo','iwlist','wlan0','scan'])
 	scan_result = scan_result.decode('utf-8')
 	return scan_result
 
@@ -67,7 +67,7 @@ def more():
 	if input_ssid in grouped_blocks:
 		return render_template('more_info.html',details = grouped_blocks[input_ssid]['blocks'])
 	else:
-		return render_template('index.html',message = f"Wifi signal {input_ssid} not found, please check if it is present in the available wifi list or not")
+		return render_template('index.html',message = f"Wifi signal {input_ssid} is not found, please check if it is present in the available wifi list or not")
  
 
 @app.route('/scan_wifi')
