@@ -3,7 +3,7 @@ import subprocess
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
-
+import os
 
 app = Flask(__name__)
 
@@ -79,21 +79,20 @@ def plot_function():
 	for ssid in grouped_networks:
 		x.append(ssid)
 		y.append(grouped_networks[ssid]['Signal Strength'][0])
-	#plt.figure(figsize=(10,6))
+	plt.figure(figsize=(10,6))
 	plt.scatter(x,y,color='blue')
-	plt.title('Plot')
-	plt.xlabel('SSID')
-	plt.ylabel('Signal Strength')
+	font1 = {'family':'serif','color':'darkred','size':15}
+	font2 = {'family':'serif','color':'green','size':20}
+	#plt.title('Plot',fontdict=font2)
+	plt.xlabel('SSID Name',fontdict=font1)
+	plt.ylabel('Signal Strength(dbm)',fontdict=font1)
 
 	plt.xticks(rotation=45,ha='right')
 	plt.tight_layout()
-	#plt.show()
-	img_stream = BytesIO()
-	plt.savefig(img_stream,format='png')
-	img_stream.seek(0)
-	img = base64.b64encode(img_stream.read()).decode('utf-8')
+	path = os.path.join('static','plot.png')
+	plt.savefig(path)
 	plt.close()
-	return render_template('plot.html',img=img)
+	return render_template('plot.html',img=path)
 
 @app.route('/connected_wifi')
 def connected_wifi():
