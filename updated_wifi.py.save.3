@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import os
-import re
 
 app = Flask(__name__)
 
@@ -176,14 +175,9 @@ def reset():
 
 @app.route('/speed_test')
 def speed_test():
-	result = subprocess.check_output(['sudo','speedtest-cli','--share'])
+	result = subprocess.check_output(['speedtest-cli','--share'])
 	result = result.decode('utf-8')
-	m = re.search(r'http[s]?://[^\s]+',result)
-	if m:
-		link = m.group(0)
-	else:
-		link = None
-	return render_template('speed.html',link=link)
+	m =
 
 if __name__=='__main__':
 	app.run(host='0.0.0.0',port=5000,debug=True)
