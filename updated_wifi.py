@@ -80,13 +80,13 @@ def plot_function():
 		x.append(ssid)
 		y.append(grouped_networks[ssid]['Signal Strength'][0])
 	plt.figure(figsize=(10,6))
-	plt.scatter(x,y,color='blue')
+	plt.bar(x,y,color='blue')
 	font1 = {'family':'serif','color':'darkred','size':15}
 	font2 = {'family':'serif','color':'green','size':20}
 	#plt.title('Plot',fontdict=font2)
 	plt.xlabel('SSID Name',fontdict=font1)
 	plt.ylabel('Signal Strength(dbm)',fontdict=font1)
-
+	
 	plt.xticks(rotation=45,ha='right')
 	plt.tight_layout()
 	path = os.path.join('static','plot.png')
