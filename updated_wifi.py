@@ -174,6 +174,47 @@ def reset():
 	subprocess.check_output(['touch','blocked_signal.txt'])
 	return render_template('index.html',message = "All blocked wifi signlas have been successfully unblocked.")
 
+@app.route('/ping')
+def ping():
+	return render_template('ping.html')
+
+@app.route('/ping_to_input_ip',methods=['POST'])
+def ping_to_input_ip():
+	ip = request.form['input_ip']
+	result = subprocess.check_output(['ping','-c', '5', ip])
+	result = result.decode('utf-8')
+	
+	time = re.findall(r"time=[0-9][0-9]?[0-9]?", result)
+	received = re.findall(r"[0-9] received",result)
+	if len(time)==0:
+		return render_template('ping.html',message=f"Ping request could not find host {ip}. Please check the name and try again.")
+	else:
+		l = []
+		for x in time:
+			t = x[5:]
+			t = int(t)
+			l.append(t)
+		
+		min_time = min(l)
+		max_time = max(l)
+		avg_time = int(sum(l)/len(l))
+		s_packet = 5
+		r_packet = int(received[0][0:1])
+		l_packet = s_packet-r_packet
+		l_percent = (l_packet/5)*100
+		d = {'Target host':ip, 'Average ping':avg_time,'Minimum ping':min_time,'Maximum ping':max_time,'Packet loss':l_percent}
+		plt.plot(l,color='blue',marker='o')
+		#plt.xticks([])
+		font1 = {'family':'serif','color':'darkred','size':15}
+		plt.xlabel('Ping Number',fontdict = font1)
+		plt.ylabel('Ping Time (ms)', fontdict=font1)
+		plt.grid(axis='y',)
+		path = os.path.join('static','ping.png')
+		plt.savefig(path)
+		plt.close()
+		return render_template('ping_to_inputip.html',info=d)
+	
+
 @app.route('/speed_test')
 def speed_test():
 	result = subprocess.check_output(['sudo','speedtest-cli','--share'])
