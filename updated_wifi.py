@@ -230,5 +230,8 @@ def speed_test():
 		link = None
 	return render_template('speed.html',link=link)
 
+@app.route('/documentation')
+	return render_template('documentaion.html')
+
 if __name__=='__main__':
 	app.run(host='0.0.0.0',port=5001,debug=True)
