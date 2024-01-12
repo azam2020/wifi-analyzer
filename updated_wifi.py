@@ -88,7 +88,7 @@ def plot_function():
 	plt.xlabel('SSID Name',fontdict=font1)
 	plt.ylabel('Signal Strength(dbm)',fontdict=font1)
 	
-	plt.xticks(rotation=45,ha='right')
+	plt.xticks(rotation=30,ha='right')
 	plt.tight_layout()
 	path = os.path.join('static','plot.png')
 	plt.savefig(path)
@@ -207,7 +207,7 @@ def ping_to_input_ip():
 		l_percent = (l_packet/9)*100
 		x_axis = [1,2,3,4,5,6,7,8,9]
 		d = {'Target host':ip, 'Average ping':avg_time,'Minimum ping':min_time,'Maximum ping':max_time,'Packet loss':l_percent}
-		plt.plot(x_axis,l,color='blue',marker='o')
+		plt.plot(l,color='blue',marker='o')
 		#plt.xticks([])
 		font1 = {'family':'serif','color':'darkred','size':15}
 		plt.xlabel('Ping Number',fontdict = font1)
