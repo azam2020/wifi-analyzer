@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyHqc4A6GgRXPx4ufoL/Z9R8JnCkU"
+        crossorigin="anonymous">
+    <title>User Documentation</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>User Documentation</h2>
+
+    <!-- Links with Documentation -->
+    <div class="list-group mt-3">
+        <button class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#scanWifiDoc">
+            Scan WiFi
+        </button>
+        <div id="scanWifiDoc" class="collapse mt-2">
+            <p>
+                When you click on the "Scan WiFi" button, it initiates a scan of all available WiFi signals. 
+                The results are then listed, providing details such as SSID name, signal strength, frequency, 
+                and encryption key for each WiFi network. Importantly, the scan filters out any blocked WiFi 
+                signals during the process.
+            </p>
+        </div>
+
+        <!-- Second Link: Available WiFi Bar Graph Documentation -->
+        <button class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#wifiBarGraphDoc">
+            Available WiFi Bar Graph
+        </button>
+        <div id="wifiBarGraphDoc" class="collapse mt-2">
+            <p>
+                Clicking on the "Available WiFi Bar Graph" link will plot a graph of all available WiFi networks,
+                showcasing their signal strengths. This visual representation helps you quickly assess the WiFi landscape 
+                and identify networks with stronger signals.
+            </p>
+        </div>
+
+        <!-- Third Link: Block WiFi Documentation -->
+        <button class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#blockWifiDoc">
+            Block WiFi
+        </button>
+        <div id="blockWifiDoc" class="collapse mt-2">
+            <p>
+                Clicking on the "Block WiFi" link allows you to block a specific WiFi network. Enter the SSID of the WiFi 
+                you want to block, and the system will block it. If the entered WiFi signal is not found, you'll receive a 
+                message indicating that the WiFi signal was not found.
+            </p>
+        </div>
+
+        <!-- Fourth Link: Unblock WiFi Documentation -->
+        <button class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#unblockWifiDoc">
+            Unblock WiFi
+        </button>
+        <div id="unblockWifiDoc" class="collapse mt-2">
+            <p>
+                Clicking on the "Unblock WiFi" link allows you to unblock a WiFi network that was previously blocked. Enter 
+                the SSID of the WiFi you want to unblock, and the system will restore its availability. If the entered WiFi 
+                signal is not found, you'll receive a message indicating that the WiFi signal was not found.
+            </p>
+        </div>
+
+        <!-- Fifth Link: More Info Documentation -->
+        <button class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#moreInfoDoc">
+            More Info
+        </button>
+        <div id="moreInfoDoc" class="collapse mt-2">
+            <p>
+                Clicking on the "More Info" link allows you to enter the SSID of a WiFi network and view detailed information 
+                corresponding to that network. This includes additional details such as signal strength, frequency, 
+                encryption key, and any other relevant information available for the specified WiFi network.
+            </p>
+        </div>
+
+        <!-- Sixth Link: Blocked WiFi List Documentation -->
+        <button class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#blockedWifiListDoc">
+            Blocked WiFi List
+        </button>
+        <div id="blockedWifiListDoc" class="collapse mt-2">
+            <p>
+                Clicking on the "Blocked WiFi List" link displays a list of all blocked WiFi networks. If there are no blocked 
+                WiFi networks, a message will indicate that the blocked WiFi list is empty, and there is nothing to display.
+            </p>
+        </div>
+
+        <!-- Seventh Link: Remove All Blocked WiFi Documentation -->
+        <button class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#removeAllBlockedWifiDoc">
+            Remove All Blocked WiFi
+        </button>
+        <div id="removeAllBlockedWifiDoc" class="collapse mt-2">
+            <p>
+                Clicking on the "Remove All Blocked WiFi" link removes all WiFi networks from the blocked list. A confirmation 
+                message will be displayed, and the blocked WiFi list will be empty if successful.
+            </p>
+        </div>
+
+        <!-- Continue adding links and documentation sections as needed -->
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-XrD4HZtAhe5JFh9Edsd9iZ9aVoMzys21pZlFv0nm6yAqI1rJkuvQ7o49XspwFfJ"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyHqc4A6GgRXPx4ufoL/Z9R8JnCkU"
+    crossorigin="anonymous"></script>
+
+</body>
+          </html>
+          
