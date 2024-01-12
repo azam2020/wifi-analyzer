@@ -61,11 +61,20 @@
      
             {% for parameters, details in info.items() %}
                 <tr>
-                    <td><th>{{ parameters }}</th> </td>
+                    <td><b>{{ parameters }}</b> </td>
+		    {% if parameters=='Packet loss' %}
+			<td>{{ details }} %</td>
+		    {% elif parameters=='Target host' %}
+			<td>{{ details }}</td>
+			{% else %}
                     <td>{{ details }} ms</td>
+		    {% endif %}
                 </tr>
             {% endfor %}
     </table>
+    <footer class="fixed-bottom text-center bg-light p-2">
+	<a href="/" class="btn btn-primary">Go to Main Page</a>
+    </footer>
 </body>
 </html>
 

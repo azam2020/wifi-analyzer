@@ -181,14 +181,17 @@ def ping():
 @app.route('/ping_to_input_ip',methods=['POST'])
 def ping_to_input_ip():
 	ip = request.form['input_ip']
-	result = subprocess.check_output(['ping','-c', '5', ip])
-	result = result.decode('utf-8')
-	
-	time = re.findall(r"time=[0-9][0-9]?[0-9]?", result)
-	received = re.findall(r"[0-9] received",result)
-	if len(time)==0:
+	c=0
+	try:
+		result = subprocess.check_output(['ping','-c', '9', ip],universal_newlines=True)
+	except subprocess.CalledProcessError as e:
+		c = e.returncode
+	if c!=0:
 		return render_template('ping.html',message=f"Ping request could not find host {ip}. Please check the name and try again.")
 	else:
+		#result = result.decode('utf-8')
+		time = re.findall(r"time=[0-9][0-9]?[0-9]?", result)
+		received = re.findall(r"[0-9] received",result)
 		l = []
 		for x in time:
 			t = x[5:]
@@ -198,12 +201,13 @@ def ping_to_input_ip():
 		min_time = min(l)
 		max_time = max(l)
 		avg_time = int(sum(l)/len(l))
-		s_packet = 5
+		s_packet = 9
 		r_packet = int(received[0][0:1])
 		l_packet = s_packet-r_packet
-		l_percent = (l_packet/5)*100
+		l_percent = (l_packet/9)*100
+		x_axis = [1,2,3,4,5,6,7,8,9]
 		d = {'Target host':ip, 'Average ping':avg_time,'Minimum ping':min_time,'Maximum ping':max_time,'Packet loss':l_percent}
-		plt.plot(l,color='blue',marker='o')
+		plt.plot(x_axis,l,color='blue',marker='o')
 		#plt.xticks([])
 		font1 = {'family':'serif','color':'darkred','size':15}
 		plt.xlabel('Ping Number',fontdict = font1)
